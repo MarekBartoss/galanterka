@@ -1,0 +1,46 @@
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* TEXT */
+main h1,
+main h2,
+main p,
+main li {
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease forwards;
+}
+
+/* IMAGES */
+main img {
+  opacity: 0;
+  animation: fadeSlideUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+/* MAP (iframe) */
+main iframe {
+  opacity: 0;
+  animation: fadeSlideUp 1s ease forwards;
+  animation-delay: 0.4s;
+}
+
+/* BUTTONS (both <a> & <button> styled as buttons) */
+main a.btn,
+main button {
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* optional stagger (if desired) */
+main h1 { animation-delay: 0.1s; }
+main h2 { animation-delay: 0.2s; }
+main p, main li { animation-delay: 0.3s; }

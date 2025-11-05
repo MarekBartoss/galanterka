@@ -1,0 +1,88 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  background: #000;
+  color: #eee;
+  text-align: center;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.sortiment-hero {
+  margin-bottom: 30px;
+}
+
+.sortiment-hero h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.sortiment-hero p {
+  font-size: 1em;
+  line-height: 1.5;
+  color: #ccc;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.sortiment-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-top: 40px;
+}
+
+.item {
+  background: #111;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.item:hover {
+  transform: translateY(-4px);
+}
+
+.item a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+.item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+}
+
+.item h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #ddd;
+}
+
+.item p {
+  font-size: 0.95em;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding-top: 10px;
+  }
+  .sortiment-hero h1 {
+    font-size: 1.6em;
+  }
+  .sortiment-hero p {
+    font-size: 0.95em;
+  }
+}

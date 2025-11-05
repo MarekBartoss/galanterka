@@ -1,0 +1,138 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  color: #eee;
+  background-color: #000;
+  text-align: center;
+}
+
+main {
+  padding-top: 40px;
+}
+
+.hero {
+  margin: 60px auto;
+  max-width: 700px;
+  padding: 0 20px;
+}
+
+.hero h1 {
+  font-size: 2.4em;
+  line-height: 1.3;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.hero p {
+  color: #ccc;
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.hero button {
+  font-family: 'Montserrat', sans-serif;
+  background: #eee;
+  color: #000;
+  border: none;
+  padding: 12px 28px;
+  font-size: 0.95em;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.hero button:hover {
+  background: #ccc;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(255,255,255,0.1);
+}
+
+.image {
+  margin: 50px auto;
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+.image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.08);
+}
+
+.btn {
+  display: inline-block;
+  background: #eee;
+  color: #000;
+  text-decoration: none;
+  padding: 12px 28px;
+  font-size: 0.95em;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background: #ccc;
+  color: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(255,255,255,0.1);
+}
+
+.about, .services {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.about h2, .services h2 {
+  font-size: 1.8em;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.about p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.services ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+}
+
+.services li {
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding-top: 10px;
+  }
+
+  .hero {
+    margin: 20px auto;
+  }
+  .hero h1 {
+    font-size: 1.6em;
+  }
+  .hero p {
+    font-size: 0.95em;
+  }
+  .image img {
+    max-width: 100%;
+    height: auto;
+  }
+  .about, .services {
+    padding: 0 10px;
+  }
+}
