@@ -12,7 +12,12 @@
 </head>
 <body>
 
-<?php include 'includes/header.php'; ?>
+<?php 
+// Připojíme header
+include 'includes/header.php'; 
+// Připojíme databázi (header.php už ji možná připojuje, ale pro jistotu)
+require_once __DIR__ . '/includes/db_connect.php';
+?>
 
 <main>
 
@@ -23,56 +28,37 @@
 
 <section class="sortiment-list">
 
-  <div class="item">
-    <a href="nite.php">
-      <img src="assets/img/placeholderIMGWHITE.jpg" alt="Nitě">
-      <h2>Nitě</h2>
-      <p>Barevné i neutrální nitě pro šicí stroje i ruční šití v různých délkách a tloušťkách.</p>
-    </a>
-  </div>
+  <?php
+  // 1. Dotaz na všechny kategorie
+  $sql = "SELECT * FROM categories ORDER BY name ASC";
+  $result = $conn->query($sql);
 
-  <div class="item">
-    <a href="knofliky.php">
-      <img src="assets/img/placeholderIMGWHITE.jpg" alt="Knoflíky">
-      <h2>Knoflíky</h2>
-      <p>Velký výběr knoflíků všech tvarů, barev a velikostí pro oblečení i dekorace.</p>
-    </a>
-  </div>
+  if ($result && $result->num_rows > 0):
+    // 2. Smyčka pro zobrazení každé kategorie
+    while ($category = $result->fetch_assoc()):
+      
+      // Zjistíme cestu k obrázku
+      $imgSrc = $category['picture_id']
+        ? 'image.php?id=' . $category['picture_id']
+        : 'assets/img/placeholderIMGWHITE.jpg'; // Výchozí obrázek
+  ?>
+  
+      <div class="item">
+        <a href="category.php?id=<?php echo htmlspecialchars($category['id']); ?>">
+          <img src="<?php echo $imgSrc; ?>" alt="<?php echo htmlspecialchars($category['name']); ?>">
+          <h2><?php echo htmlspecialchars($category['name']); ?></h2>
+          <p><?php echo htmlspecialchars($category['description']); ?></p>
+        </a>
+      </div>
 
-  <div class="item">
-    <a href="zipy.php">
-      <img src="assets/img/placeholderIMGWHITE.jpg" alt="Zipy">
-      <h2>Zipy</h2>
-      <p>Kvalitní zipy v různých délkách, barvách a provedeních – spirálové, kovové i skryté.</p>
-    </a>
-  </div>
-
-  <div class="item">
-    <a href="krajky.php">
-      <img src="assets/img/placeholderIMGWHITE.jpg" alt="Krajky">
-      <h2>Krajky a stuhy</h2>
-      <p>Jemné krajky, dekorační stuhy a lemovky pro zdobení vašich výtvorů.</p>
-    </a>
-  </div>
-
-  <div class="item">
-    <a href="latky.php">
-      <img src="assets/img/placeholderIMGWHITE.jpg" alt="Látky">
-      <h2>Látky</h2>
-      <p>Vzorky látek pro drobné projekty i metráž, od bavlny po dekorační materiály.</p>
-    </a>
-  </div>
-
-  <div class="item">
-    <a href="pomucky.php">
-      <img src="assets/img/placeholderIMGWHITE.jpg" alt="Pomůcky">
-      <h2>Pomůcky</h2>
-      <p>Nůžky, jehly, špendlíky, krejčovské metry a další nezbytné pomůcky k šití.</p>
-    </a>
-  </div>
+  <?php
+    endwhile;
+  else:
+    echo "<p>V nabídce zatím nejsou žádné kategorie.</p>";
+  endif;
+  ?>
 
 </section>
-
 
 </main>
 

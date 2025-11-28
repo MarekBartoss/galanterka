@@ -19,7 +19,8 @@ header {
 }
 
 .logo img {
-  max-height: 40px;
+  max-height: 30px;
+  margin-top: 5px;
 }
 
 /* Desktop nav */
@@ -137,8 +138,9 @@ header {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: #fff; /* inverted: white background for mobile */
-  color: #000;      /* black text */
+  /* ZMĚNA: Tmavé pozadí, podobné lightboxu */
+  background: rgba(0, 0, 0, 0.98); 
+  color: #eee; /* ZMĚNA: Světlý text */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -178,7 +180,7 @@ header {
 
 .mobile-menu li a {
   font-size: 1.5rem;
-  color: #000; /* black text */
+  color: #fff; /* ZMĚNA: Bílý text */
   text-decoration: none;
   padding: 10px 0;
   transition: color 0.3s;
@@ -186,7 +188,7 @@ header {
 }
 
 .mobile-menu li a:hover {
-  color: #555;
+  color: #ccc; /* ZMĚNA: Světle šedá při najetí */
 }
 
 .mobile-menu .close {
@@ -196,7 +198,7 @@ header {
   font-size: 2em;
   background: none;
   border: none;
-  color: #000; /* black close button */
+  color: #fff; /* ZMĚNA: Bílé tlačítko */
   cursor: pointer;
 }
 
@@ -266,4 +268,21 @@ header {
   .burger {
     display: none !important;
   }
+}
+
+/* === Sticky Footer Oprava === */
+/* Tohle řekne tělu stránky, aby bylo vždy vysoké 
+  minimálně jako obrazovka a aby rostlo.
+*/
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Tohle řekne hlavnímu obsahu (<main>), aby se "roztáhl" 
+  a vyplnil všechno volné místo, čímž odtlačí patičku dolů.
+*/
+main {
+  flex-grow: 1;
 }

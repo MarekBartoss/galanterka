@@ -1,29 +1,31 @@
-
-  <?php
-require_once __DIR__ . '/db_connect.php';
-$res = $conn->query("SELECT id FROM pictures WHERE filename LIKE 'logo.%' ORDER BY uploaded_at DESC LIMIT 1");
-$row = $res->fetch_assoc();
-$logoId = $row ? $row['id'] : null;
-
-?>
-
-<!DOCTYPE html>
-<html lang="cs">
 <?php
+// Připojíme databázi pouze JEDNOU
+require_once __DIR__ . '/db_connect.php';
 
-// Default metadata fallback
-$pageTitle = $pageTitle ?? 'Sdílna - Home';
-$pageDesc = $pageDesc ?? 'Kurzy šití, mentoring a inspirace pro začátečníky i pokročilé.';
-$pageImage = $pageImage ?? 'https://sdilna.eu/gallery'; // adjust path as needed
-$pageURL = $pageURL ?? 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+// --- Logika pro metadata stránky ---
 
-// Get logo from DB
-$res = $conn->query("SELECT id FROM pictures WHERE page='header' AND position='logo' ORDER BY uploaded_at DESC LIMIT 1
-");
-$row = $res->fetch_assoc();
-$logoId = $row ? $row['id'] : null;
+// Výchozí hodnoty
+$defaultTitle = 'Galanterka';
+$defaultDesc = 'Kurzy šití, mentoring a inspirace pro začátečníky i pokročilé.';
+$defaultImage = 'https://galanterka.eu/inspiration'; // Upravte podle potřeby
+$defaultURL = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+// Pokud stránka (jako category.php) nastavila $pageTitle, použijeme ji.
+// Pokud ne, použijeme výchozí.
+$pageTitle = $pageTitle ?? $defaultTitle;
+$pageDesc = $pageDesc ?? $defaultDesc;
+$pageImage = $pageImage ?? $defaultImage;
+$pageURL = $pageURL ?? $defaultURL;
+
+// --- Logika pro logo ---
+// (Sloučil jsem vaše dva dotazy na logo do jednoho)
+$logoId = null;
+$res = $conn->query("SELECT id FROM pictures WHERE page='header' AND position='logo' ORDER BY uploaded_at DESC LIMIT 1");
+if ($res && $res->num_rows > 0) {
+    $row = $res->fetch_assoc();
+    $logoId = $row['id'];
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="cs">
 
@@ -31,40 +33,44 @@ $logoId = $row ? $row['id'] : null;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title><?= htmlspecialchars($pageTitle) ?></title>
-  <meta name="description" content="<?= htmlspecialchars($pageDesc) ?>">
+  <title><?php echo htmlspecialchars($pageTitle); ?></title>
+  <meta name="description" content="<?php echo htmlspecialchars($pageDesc); ?>">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="<?= htmlspecialchars($pageTitle) ?>" />
-  <meta property="og:description" content="<?= htmlspecialchars($pageDesc) ?>" />
-  <meta property="og:image" content="<?= htmlspecialchars($pageImage) ?>" />
-  <meta property="og:url" content="<?= htmlspecialchars($pageURL) ?>" />
+  <meta property="og:title" content="<?php echo htmlspecialchars($pageTitle); ?>" />
+  <meta property="og:description" content="<?php echo htmlspecialchars($pageDesc); ?>" />
+  <meta property="og:image" content="<?php echo htmlspecialchars($pageImage); ?>" />
+  <meta property="og:url" content="<?php echo htmlspecialchars($pageURL); ?>" />
   <meta property="og:type" content="website" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="<?= htmlspecialchars($pageTitle) ?>" />
-  <meta name="twitter:description" content="<?= htmlspecialchars($pageDesc) ?>" />
-  <meta name="twitter:image" content="<?= htmlspecialchars($pageImage) ?>" />
+  <meta name="twitter:title" content="<?php echo htmlspecialchars($pageTitle); ?>" />
+  <meta name="twitter:description" content="<?php echo htmlspecialchars($pageDesc); ?>" />
+  <meta name="twitter:image" content="<?php echo htmlspecialchars($pageImage); ?>" />
 
-  <!-- Favicon & Fonts -->
-  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="icon" href="assets/img/galaFAVICON.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="css/header.css">
+  
+  <?php
+  // Tento blok nám umožní načíst specifické CSS pro každou stránku.
+  // Např. do category.php přidáme $pageStylesheets = ['css/sortimentCategory.css'];
+  if (isset($pageStylesheets) && is_array($pageStylesheets)) {
+      foreach ($pageStylesheets as $style) {
+          echo '<link rel="stylesheet" href="' . htmlspecialchars($style) . '">';
+      }
+  }
+  ?>
+  <link rel="stylesheet" href="css/globalAnimations.css">
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V5Y6Z0TYMQ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-V5Y6Z0TYMQ');
   </script>
 </head>
-
 
 <body>
 
@@ -79,8 +85,6 @@ $logoId = $row ? $row['id'] : null;
           <?php endif; ?>
         </a>
     </div>
-
-
 
       <button class="burger" aria-label="Toggle navigation">
         <span></span>
@@ -102,7 +106,6 @@ $logoId = $row ? $row['id'] : null;
       <button class="close">&times;</button>
       <ul>
         <li><a href="index.php">Úvod</a></li>
-        <li class="has-dropdown">
         <li><a href="sortiment.php">Sortiment</a></li>
         <li><a href="inspiration.php">Inspirace</a></li>
         <li><a href="aboutUs.php">O nás</a></li>
@@ -137,7 +140,3 @@ $logoId = $row ? $row['id'] : null;
       });
     });
   </script>
-
-</body>
-
-</html>

@@ -9,38 +9,80 @@
   }
 }
 
+/* --- Základní animace pro prvky --- */
+
 /* TEXT */
 main h1,
 main h2,
 main p,
-main li {
+main li,
+.produkt-cena,         /* <-- PŘIDÁNO (Cena v mřížce) */
+.produkt-info .cena,   /* <-- PŘIDÁNO (Cena v detailu) */
+.produkt-info .popis   /* <-- PŘIDÁNO (Popis v detailu) */
+{
   opacity: 0;
   animation: fadeSlideUp 0.8s ease forwards;
 }
 
-/* IMAGES */
-main img {
+/* BLOKY (jako filtry a navigace) */
+.filter-bar,           /* <-- PŘIDÁNO (Filtr) */
+.produkt-nav           /* <-- PŘIDÁNO (Navigace v detailu) */
+{
   opacity: 0;
-  animation: fadeSlideUp 1s ease forwards;
-  animation-delay: 0.3s;
+  animation: fadeSlideUp 0.8s ease forwards;
 }
 
-/* MAP (iframe) */
+/* OBRÁZKY */
+main img,
+.produkt-obrazek       /* <-- PŘIDÁNO (Obal obrázku v detailu) */
+{
+  opacity: 0;
+  animation: fadeSlideUp 1s ease forwards;
+}
+
+/* MAPA (iframe) */
 main iframe {
   opacity: 0;
   animation: fadeSlideUp 1s ease forwards;
-  animation-delay: 0.4s;
 }
 
-/* BUTTONS (both <a> & <button> styled as buttons) */
+/* TLAČÍTKA */
 main a.btn,
 main button {
   opacity: 0;
   animation: fadeSlideUp 0.8s ease forwards;
-  animation-delay: 0.2s;
 }
 
-/* optional stagger (if desired) */
+
+/* --- Zpoždění animací (Staggering) --- */
+
+/* Obecné stránky */
 main h1 { animation-delay: 0.1s; }
 main h2 { animation-delay: 0.2s; }
 main p, main li { animation-delay: 0.3s; }
+main img { animation-delay: 0.2s; }
+main a.btn, main button { animation-delay: 0.4s; }
+
+/* Stránka Podkategorie (subcategory.php) */
+.filter-bar { animation-delay: 0.2s; } /* Filtr hned po nadpisu */
+.produkt-cena { animation-delay: 0.3s; } /* Cena v mřížce */
+
+/* Stránka Detail Produktu (productDetail.php) */
+.produkt-nav { animation-delay: 0.1s; }
+.produkt-obrazek { animation-delay: 0.2s; }
+.produkt-info h1 { animation-delay: 0.2s; }
+.produkt-info .cena { animation-delay: 0.3s; }
+.produkt-info .popis { animation-delay: 0.4s; }
+.produkt-info .btn { animation-delay: 0.5s; }
+
+/* --- Navigační tlačítko "Zpět" na spodku stránky --- */
+.page-navigation {
+  text-align: center;
+  margin-top: 40px; /* Odsazení od obsahu nad ním */
+  padding-top: 30px;
+  border-top: 1px solid #333; /* Jemná oddělovací čára */
+  
+  /* Animace (ladí se zbytkem) */
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease 0.5s forwards;
+}

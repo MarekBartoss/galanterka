@@ -80,3 +80,13 @@ main {
     font-size: 0.95em;
   }
 }
+
+
+/* Resetuje styl odkazu uvnitř karty produktu.
+  Barvu "inherit" znamená "vezmi si barvu od rodiče" (což je #eee).
+*/
+.produkt a, 
+.produkt a:visited {
+  text-decoration: none;
+  color: inherit;
+}

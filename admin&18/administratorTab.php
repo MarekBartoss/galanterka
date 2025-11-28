@@ -127,6 +127,7 @@ input[type="text"], input[type="password"], input[type="email"] { width:200px; }
 
   <div class="actions">
     <a href="manage_pictures.php">Správa obrázků</a>
+    <a href="manage_sortiment.php">Správa sortimentu</a>
   </div>
 
   <a class="logout" href="administratorTab.php?logout=1">Odhlásit se</a>

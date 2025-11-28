@@ -14,28 +14,28 @@
   <div class="footer-content">
     <div class="footer-section">
       <a href="mailto:sdilna@terezahopjanova.cz">
-        <img src="assets/img/email.png" alt="Mail" class="icon"> sdilna@terezahopjanova.cz
+        <img src="assets/img/email (1).png" alt="Mail" class="icon"> sdilna@terezahopjanova.cz
       </a>
     </div>
 
     <div class="footer-section social-links">
       <a href="https://www.facebook.com/sici.sdilna/" target="_blank">
-        <img src="assets/img/facebook (1).png" alt="Facebook" class="icon"> Facebook
+        <img src="assets/img/facebook (2).png" alt="Facebook" class="icon"> Facebook
       </a>
       <a href="https://www.instagram.com/galanterka_sdilna/" target="_blank">
-        <img src="assets/img/instagram.png" alt="Instagram" class="icon"> Instagram
+        <img src="assets/img/ig.png" alt="Instagram" class="icon"> Instagram
       </a>
     </div>
 
     <div class="footer-section">
       <a href="tel:+420737158828">
-        <img src="assets/img/phone-receiver-silhouette.png" alt="Telefon" class="icon"> +420 737 158 828
+        <img src="assets/img/phone-call.png" alt="Telefon" class="icon"> +420 737 158 828
       </a>
     </div>
 
      <div class="footer-section galanterka">
-    <a href="https://galanterka.eu" target="_blank" rel="noopener">
-      <img src="assets/img/galanterka_logo.png" alt="Galanterka.eu" class="icon">
+    <a href="https://sdilna.eu" target="_blank" rel="noopener">
+      <img src="assets/img/sdilnaLOGO.png" alt="Sdilna.eu" class="icon">
     </a>
   </div>
   </div>

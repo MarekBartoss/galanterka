@@ -1,0 +1,121 @@
+/* --- Nový a vylepšený productDetail.css --- */
+
+/* Základní nastavení stránky, aby ladila se zbytkem webu */
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  color: #eee; /* Výchozí barva textu světlá */
+  background: #000; /* Výchozí pozadí černé */
+}
+
+/* Obalovač hlavního obsahu (stejný jako na ostatních stránkách) */
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Navigace "Drobečková lišta" */
+.produkt-nav {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #888; /* Šedá barva pro neaktivní text */
+  font-size: 0.9em;
+}
+.produkt-nav a {
+  color: #ccc; /* Světle šedý odkaz */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.produkt-nav a:hover {
+  color: #fff; /* Zbělá při najetí */
+  text-decoration: underline;
+}
+
+/* Hlavní mřížka detailu produktu */
+.produkt-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dva sloupce 50/50 */
+  gap: 40px;
+  text-align: left;
+}
+
+/* Levá strana - obrázek */
+.produkt-obrazek img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #333; /* Jemný okraj, aby nebyl ostrý přechod */
+}
+
+/* Pravá strana - Info */
+.produkt-info h1 {
+  font-size: 2.4em; /* Velký nadpis */
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #fff; /* Čistě bílý nadpis */
+}
+
+.produkt-info .cena {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #eee; /* Světlá barva ceny */
+  margin-bottom: 25px;
+}
+
+.produkt-info .popis {
+  font-size: 1em;
+  line-height: 1.6; /* Lepší čitelnost */
+  color: #ccc; /* Světle šedý popis */
+  margin-bottom: 30px;
+}
+
+/* Tlačítko pro kontakt (používá styly z globalAnimations, ale pro jistotu) */
+.produkt-info .btn {
+  display: inline-block;
+  background: #eee;
+  color: #000;
+  text-decoration: none;
+  padding: 12px 28px;
+  font-size: 0.95em;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+.produkt-info .btn:hover {
+  background: #ccc;
+  color: #000;
+  transform: translateY(-1px);
+}
+
+/* Responsive zobrazení pro mobily */
+@media (max-width: 768px) {
+  main {
+    padding-top: 20px;
+  }
+  .produkt-detail {
+    grid-template-columns: 1fr; /* Jeden sloupec pod sebou */
+    gap: 30px;
+  }
+  .produkt-info h1 {
+    font-size: 1.8em;
+  }
+  .produkt-info .cena {
+    font-size: 1.5em;
+  }
+}
+
+/* --- Styl pro tag dostupnosti --- */
+.produkt-availability-tag {
+  display: inline-block; /* Aby zabíral jen potřebnou šířku */
+  background-color: #111; /* Pozadí jako u filtrů */
+  border: 1px solid #333; /* Okraj jako u filtrů */
+  color: #eee; /* Světlý text */
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9em;
+  margin-bottom: 25px; /* Odsazení od ceny pod ním */
+}

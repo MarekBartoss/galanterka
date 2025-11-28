@@ -126,12 +126,12 @@ small.type { color: #666; font-size: 0.8em; display: block; margin-top: 4px; }
 
 <form method="post" enctype="multipart/form-data">
   <label>Stránka:
-    <select name="page" id="page" required>
-      <option value="">-- vyber stránku --</option>
-      <option value="header">Header</option>
-      <option value="index">Úvod</option>
-    </select>
-  </label>
+  <select name="page" id="page" required>
+    <option value="">-- vyber stránku --</option>
+    <option value="header">Header</option>
+    <option value="index">Úvod</option>
+    <option value="inspirace">Inspirace</option> </select>
+</label>
 
   <label>Pozice:
     <select name="position" id="position" required>
@@ -175,7 +175,8 @@ const pageSelect = document.getElementById('page');
 const positionSelect = document.getElementById('position');
 const positions = {
   'header': ['logo'],
-  'index': ['hero']
+  'index': ['hero'],
+  'inspirace': ['gallery']
 };
 pageSelect.addEventListener('change', () => {
   const page = pageSelect.value;
