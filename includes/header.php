@@ -2,23 +2,29 @@
 // Připojíme databázi pouze JEDNOU
 require_once __DIR__ . '/db_connect.php';
 
-// --- Logika pro metadata stránky ---
+// --- Načtení nastavení lišty ---
+$announcement_text = "";
+$announcement_active = 0;
+$setRes = $conn->query("SELECT name, value FROM settings WHERE name IN ('announcement_text', 'announcement_active')");
+if ($setRes) {
+    while($row = $setRes->fetch_assoc()) {
+        if ($row['name'] == 'announcement_text') $announcement_text = $row['value'];
+        if ($row['name'] == 'announcement_active') $announcement_active = (int)$row['value'];
+    }
+}
 
-// Výchozí hodnoty
+// --- Logika pro metadata stránky ---
 $defaultTitle = 'Galanterka';
 $defaultDesc = 'Kurzy šití, mentoring a inspirace pro začátečníky i pokročilé.';
-$defaultImage = 'https://galanterka.eu/inspiration'; // Upravte podle potřeby
+$defaultImage = 'https://galanterka.eu/inspiration'; 
 $defaultURL = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-// Pokud stránka (jako category.php) nastavila $pageTitle, použijeme ji.
-// Pokud ne, použijeme výchozí.
 $pageTitle = $pageTitle ?? $defaultTitle;
 $pageDesc = $pageDesc ?? $defaultDesc;
 $pageImage = $pageImage ?? $defaultImage;
 $pageURL = $pageURL ?? $defaultURL;
 
 // --- Logika pro logo ---
-// (Sloučil jsem vaše dva dotazy na logo do jednoho)
 $logoId = null;
 $res = $conn->query("SELECT id FROM pictures WHERE page='header' AND position='logo' ORDER BY uploaded_at DESC LIMIT 1");
 if ($res && $res->num_rows > 0) {
@@ -53,8 +59,6 @@ if ($res && $res->num_rows > 0) {
   <link rel="stylesheet" href="css/header.css">
   
   <?php
-  // Tento blok nám umožní načíst specifické CSS pro každou stránku.
-  // Např. do category.php přidáme $pageStylesheets = ['css/sortimentCategory.css'];
   if (isset($pageStylesheets) && is_array($pageStylesheets)) {
       foreach ($pageStylesheets as $style) {
           echo '<link rel="stylesheet" href="' . htmlspecialchars($style) . '">';
@@ -74,12 +78,18 @@ if ($res && $res->num_rows > 0) {
 
 <body>
 
+  <?php if ($announcement_active && !empty($announcement_text)): ?>
+  <div class="announcement-bar">
+    <?php echo htmlspecialchars($announcement_text); ?>
+  </div>
+  <?php endif; ?>
+
   <header>
     <div class="header-inner">
       <div class="logo">
-        <a href="index.php">
+        <a href="index">
           <?php if ($logoId): ?>
-            <img src="image.php?id=<?php echo $logoId; ?>" alt="Galanterka logo">
+            <img src="image?id=<?php echo $logoId; ?>" alt="Galanterka logo">
           <?php else: ?>
             <p>Logo nenalezeno</p>
           <?php endif; ?>
@@ -93,23 +103,22 @@ if ($res && $res->num_rows > 0) {
       </button>
 
       <nav class="nav-desktop">
-        <a href="index.php">Úvod</a>
-        <a href="sortiment.php">Sortiment</a>
-        <a href="inspiration.php">Inspirace</a>
-        <a href="aboutUs.php">O nás</a>
-        <a href="contact.php">Kontakt</a>
+        <a href="index">Úvod</a>
+        <a href="sortiment">Sortiment</a>
+        <a href="inspiration">Inspirace</a>
+        <a href="aboutUs">O nás</a>
+        <a href="contact">Kontakt</a>
       </nav>
-    </div>
     </div>
 
     <div class="mobile-menu">
       <button class="close">&times;</button>
       <ul>
-        <li><a href="index.php">Úvod</a></li>
-        <li><a href="sortiment.php">Sortiment</a></li>
-        <li><a href="inspiration.php">Inspirace</a></li>
-        <li><a href="aboutUs.php">O nás</a></li>
-        <li><a href="contact.php">Kontakt</a></li>
+        <li><a href="index">Úvod</a></li>
+        <li><a href="sortiment">Sortiment</a></li>
+        <li><a href="inspiration">Inspirace</a></li>
+        <li><a href="aboutUs">O nás</a></li>
+        <li><a href="contact">Kontakt</a></li>
       </ul>
     </div>
   </header>
@@ -128,15 +137,6 @@ if ($res && $res->num_rows > 0) {
       closeBtn.addEventListener('click', () => {
         burger.classList.remove('open');
         mobileMenu.classList.remove('active');
-      });
-
-      const mobileDropdownToggles = document.querySelectorAll('.mobile-menu .dropdown-toggle');
-
-      mobileDropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', e => {
-          e.preventDefault();
-          toggle.parentElement.classList.toggle('open');
-        });
       });
     });
   </script>

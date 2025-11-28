@@ -39,12 +39,20 @@ require_once __DIR__ . '/includes/db_connect.php';
       
       // Zjistíme cestu k obrázku
       $imgSrc = $category['picture_id']
-        ? 'image.php?id=' . $category['picture_id']
+        ? 'image?id=' . $category['picture_id']
         : 'assets/img/placeholderIMGWHITE.jpg'; // Výchozí obrázek
+      
+      // Zjistíme, jestli má kategorie slevu
+      $discount = isset($category['sale_discount']) ? (int)$category['sale_discount'] : 0;
   ?>
   
       <div class="item">
-        <a href="category.php?id=<?php echo htmlspecialchars($category['id']); ?>">
+        <a href="category?id=<?php echo htmlspecialchars($category['id']); ?>">
+          
+          <?php if($discount > 0): ?>
+            <div class="sale-badge">-<?php echo $discount; ?> %</div>
+          <?php endif; ?>
+
           <img src="<?php echo $imgSrc; ?>" alt="<?php echo htmlspecialchars($category['name']); ?>">
           <h2><?php echo htmlspecialchars($category['name']); ?></h2>
           <p><?php echo htmlspecialchars($category['description']); ?></p>

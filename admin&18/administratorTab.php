@@ -104,7 +104,6 @@ input[type="text"], input[type="password"], input[type="email"] { width:200px; }
     <a href="../index.php" style="color: red;">Ukončit</a>
 </form>
 
-<!--zakomentovat -->
 <h2>Registrace</h2>
 <form method="post">
     <label>Uživatelské jméno:
@@ -128,6 +127,7 @@ input[type="text"], input[type="password"], input[type="email"] { width:200px; }
   <div class="actions">
     <a href="manage_pictures.php">Správa obrázků</a>
     <a href="manage_sortiment.php">Správa sortimentu</a>
+    <a href="manage_settings.php">Nastavení webu (Lišta)</a>
   </div>
 
   <a class="logout" href="administratorTab.php?logout=1">Odhlásit se</a>

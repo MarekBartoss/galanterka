@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin&18/
+Disallow: /includes/
+
+Sitemap: https://galanterka.eu/sitemap.xml

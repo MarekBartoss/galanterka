@@ -119,3 +119,22 @@ main {
   font-size: 0.9em;
   margin-bottom: 25px; /* Odsazení od ceny pod ním */
 }
+
+/* Status Colors */
+.produkt-availability-tag.status-stock {
+  border-color: #28a745;
+  color: #28a745; /* Green */
+  background: rgba(40, 167, 69, 0.1);
+}
+
+.produkt-availability-tag.status-out {
+  border-color: #dc3545;
+  color: #dc3545; /* Red */
+  background: rgba(220, 53, 69, 0.1);
+}
+
+.produkt-availability-tag.status-store {
+  border-color: #ffc107;
+  color: #ffc107; /* Yellow/Orange */
+  background: rgba(255, 193, 7, 0.1);
+}
